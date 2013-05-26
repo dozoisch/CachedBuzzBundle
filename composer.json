@@ -2,7 +2,7 @@
     "name": "dozoisch/cachedbuzz",
     "description": "Browser with caching handling over Buzz",
     "keywords": ["http client", "curl", "cache"],
-    "homepage": "",
+    "homepage": "https://github.com/dozoisch/CachedBuzzBundle",
     "type": "library",
     "license": "MIT",
     "authors": [
