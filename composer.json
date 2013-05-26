@@ -4,12 +4,11 @@
     "description": "Browser with caching handling over Buzz",
     "keywords": ["http client", "curl", "cache"],
     "homepage": "https://github.com/dozoisch/CachedBuzzBundle",
-    "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Hugo Dozois-Caouette",
-            "email": "hugo.dozois@gmail.com",
+            "email": "hugo.dozois@gmail.com"
         }
     ],
     "require": {
