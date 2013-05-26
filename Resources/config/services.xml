@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <services>
+        <service id="dozoisch.cached_buzz" class="Dozoisch\CachedBuzzBundle\Browser">
+            <argument type="service" id="dozoisch.cached_buzz.cacher" />
+            <argument type="service" id="buzz.client" />
+            <!--<argument id="factory" />-->
+        </service>
+    </services>
+</container>

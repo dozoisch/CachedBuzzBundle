@@ -1,0 +1,26 @@
+{
+    "name": "dozoisch/cachedbuzz",
+    "description": "Browser with caching handling over Buzz",
+    "keywords": ["http client", "curl", "cache"],
+    "homepage": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hugo Dozois-Caouette",
+            "email": "hugo.dozois@gmail.com",
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "kriswallsmith/buzz" : "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Dozoisch\\CachedBuzzBundle": ""
+        }
+    }
+}
