@@ -19,9 +19,7 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-0": {
-            "Dozoisch\\CachedBuzzBundle": ""
-        }
+        "psr-0": { "Dozoisch\\CachedBuzzBundle": "" }
     },
     "target-dir": "Dozoisch/CachedBuzzBundle"
 }
