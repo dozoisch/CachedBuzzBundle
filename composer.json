@@ -1,5 +1,6 @@
 {
     "name": "dozoisch/cachedbuzz",
+    "type": "symfony-bundle",
     "description": "Browser with caching handling over Buzz",
     "keywords": ["http client", "curl", "cache"],
     "homepage": "https://github.com/dozoisch/CachedBuzzBundle",
@@ -18,10 +19,10 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
     },
-    "target-dir": "Dozoisch/CachedBuzzBundle",
     "autoload": {
         "psr-0": {
             "Dozoisch\\CachedBuzzBundle": ""
         }
-    }
+    },
+    "target-dir": "Dozoisch/CachedBuzzBundle",
 }
