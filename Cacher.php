@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Cached Buzz Bundle.
+ *
+ * (C) 2013 Hugo Dozois-Caouette
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Dozoisch\CachedBuzzBundle;
 
 use Buzz\Message\Request;
@@ -66,7 +75,7 @@ class Cacher {
      * @return string the key specific to the request
      */
     protected function buildKey(Request $request) {
-        return $request->getUrl(). $request->getMethod().implode($request->getHeaders());
+        return $request->getUrl() . $request->getMethod() . implode($request->getHeaders());
     }
 
 }

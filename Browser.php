@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Cached Buzz Bundle.
+ *
+ * (C) 2013 Hugo Dozois-Caouette
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Dozoisch\CachedBuzzBundle;
 
 use Buzz\Browser as BuzzBrowser;
@@ -41,7 +50,7 @@ class Browser extends BuzzBrowser {
         $request->setContent($content);
 
         $data = $this->cacher->retrieveCachedResponse($request);
-        
+
         if (!$data) {
             $response = $this->send($request);
             $this->cacher->cacheResponse($request, $response);

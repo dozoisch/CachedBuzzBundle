@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Cached Buzz Bundle.
+ *
+ * (C) 2013 Hugo Dozois-Caouette
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Dozoisch\CachedBuzzBundle\Tests\Cache;
 
 use Dozoisch\CachedBuzzBundle\Cache\APCCache;
@@ -50,7 +59,6 @@ class APCCacheTest extends \PHPUnit_Framework_TestCase {
         $this->cache->set(self::$key, self::$data1);
         $this->assertTrue($this->cache->delete(self::$key));
         $this->assertFalse($this->cache->get(self::$key));
-        
     }
 
 }

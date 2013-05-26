@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Cached Buzz Bundle.
+ *
+ * (C) 2013 Hugo Dozois-Caouette
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Dozoisch\CachedBuzzBundle\Cache;
 
 /**
@@ -7,7 +16,7 @@ namespace Dozoisch\CachedBuzzBundle\Cache;
  * @author dozoisch
  */
 interface CacheInterface {
- 
+
     /**
      * Retrieves the data cached by the given key or false if the key doesn't exists or is expired.
      * 
@@ -15,7 +24,7 @@ interface CacheInterface {
      * @return mixed|false
      */
     public function get($key);
-    
+
     /**
      * Saves the data for the given key. The data is being serialized
      * 
@@ -24,7 +33,7 @@ interface CacheInterface {
      * @return boolean success
      */
     public function set($key, $data);
-    
+
     /**
      * Remove the key and the data from the cache
      * 
