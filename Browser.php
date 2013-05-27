@@ -21,9 +21,11 @@ class Browser extends BuzzBrowser {
      * @var Cacher
      */
     private $cacher;
+    private $factory;
 
     function __construct(Cacher $cacher, ClientInterface $httpClient = null, FactoryInterface $factory = null) {
         parent::__construct($httpClient, $factory);
+        $this->factory = $this->getMessageFactory();
         $this->cacher = $cacher;
     }
 
