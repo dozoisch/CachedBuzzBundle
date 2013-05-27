@@ -132,7 +132,7 @@ class CacheValidator implements CacheValidatorInterface {
         // parse CacheControl
         $pCC = $this->parseCacheControl($cacheControl);
 
-        if (isset($pCC['private'], $pCC['no-store'], $pCC['no-cache'])) {
+        if (isset($pCC['private']) || isset($pCC['no-store']) || isset($pCC['no-cache'])) {
             return false;
         }
 
