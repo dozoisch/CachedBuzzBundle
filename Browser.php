@@ -13,6 +13,7 @@ namespace Dozoisch\CachedBuzzBundle;
 
 use Buzz\Browser as BuzzBrowser;
 use Buzz\Client\ClientInterface;
+use Buzz\Util\Url;
 
 class Browser extends BuzzBrowser {
 
@@ -21,7 +22,13 @@ class Browser extends BuzzBrowser {
      * @var Cacher
      */
     private $cacher;
+
+    /**
+     *
+     * @var Factory
+     */
     private $factory;
+    private $data;
 
     function __construct(Cacher $cacher, ClientInterface $httpClient = null, FactoryInterface $factory = null) {
         parent::__construct($httpClient, $factory);
@@ -51,16 +58,26 @@ class Browser extends BuzzBrowser {
         $request->addHeaders($headers);
         $request->setContent($content);
 
-        $data = $this->cacher->retrieveCachedResponse($request);
+        $this->data = $this->cacher->retrieveCachedResponse($request);
 
-        if (!$data) {
-            $response = $this->send($request);
-            $this->cacher->cacheResponse($request, $response);
-        } else {
-            $response = $data['response'];
+        if (!$this->data) {
+            $this->send($request);
+            $this->data = array(
+                'request' => parent::getLastRequest(),
+                'response' => parent::getLastResponse()
+            );
+            $this->cacher->cacheResponse($this->data['response'], $this->data['request']);
         }
 
-        return $response;
+        return $this->data['response'];
+    }
+
+    public function getLastRequest() {
+        return $this->data['request'];
+    }
+
+    public function getLastResponse() {
+        return $this->data['response'];
     }
 
 }
