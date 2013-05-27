@@ -79,20 +79,20 @@ class CacheValidator implements CacheValidatorInterface {
         if ($this->isExpired($response)) {
             return false;
         }
-        if ($this->isStatusCodeCacheable($response->getStatusCode())) {
+        if (!$this->isStatusCodeCacheable($response->getStatusCode())) {
             return false;
         }
 
-        if (!$response->getHeader('etag')) {
+        if ($response->getHeader('etag')) {
             return false;
         }
         if ($response->getHeader('vary')) {
             return false;
         }
-        if (!$this->isCacheControlCacheable($this->getHeader('cache-control'))) {
+        if (!$this->isCacheControlCacheable($response->getHeader('cache-control'))) {
             return false;
         }
-        $pragma = $this->getHeader('pragma');
+        $pragma = $response->getHeader('pragma');
         if ($pragma == 'no-cache' || strpos($pragma, 'no-cache') !== false) {
             return false;
         }

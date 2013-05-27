@@ -66,7 +66,7 @@ class Browser extends BuzzBrowser {
                 'request' => parent::getLastRequest(),
                 'response' => parent::getLastResponse()
             );
-            $this->cacher->cacheResponse($this->data['response'], $this->data['request']);
+            $this->cacher->cacheResponse($this->data['request'], $this->data['response']);
         }
 
         return $this->data['response'];
