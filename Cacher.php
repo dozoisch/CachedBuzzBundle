@@ -52,6 +52,8 @@ class Cacher {
             $data = $this->cache->get($key);
             if ($data && !$this->validator->isExpired($data['response'])) {
                 return $data;
+            } else {
+                $this->cache->delete($key);
             }
         }
         return false;

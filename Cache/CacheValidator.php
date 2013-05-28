@@ -45,7 +45,7 @@ class CacheValidator implements CacheValidatorInterface {
      * @return boolean
      */
     public function isExpired(Response $response, $minFresh = 5) {
-        $expires = $response->getHeader('expires');
+        $expires = strtotime($response->getHeader('expires'));
         if ($expires !== null && time() < ($expires + $minFresh)) {
             return true;
         }
