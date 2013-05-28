@@ -25,7 +25,7 @@ class CacheValidator implements CacheValidatorInterface {
     protected static $CACHEABLE_STATUS_CODES = array('200', '203', '204', '205', '300', '301', '410');
 
     /**
-     * @todo finish it
+     * 
      * @param \Buzz\Message\Request $request
      * @param \Buzz\Message\Response $response
      * @return boolean
@@ -46,10 +46,10 @@ class CacheValidator implements CacheValidatorInterface {
      */
     public function isExpired(Response $response, $minFresh = 5) {
         $expires = strtotime($response->getHeader('expires'));
-        if ($expires !== null && time() < ($expires + $minFresh)) {
-            return true;
+        if ($expires === null || (time() + $minFresh) < $expires) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
