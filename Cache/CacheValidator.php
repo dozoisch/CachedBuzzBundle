@@ -45,11 +45,14 @@ class CacheValidator implements CacheValidatorInterface {
      * @return boolean
      */
     public function isExpired(Response $response, $minFresh = 5) {
-        $expires = strtotime($response->getHeader('expires'));
-        if ($expires === null || (time() + $minFresh) < $expires) {
-            return false;
+        $expires = $response->getHeader('expires');
+        $parsedExpires = strtotime($expires);
+        if ($expires !== null) {
+            if ($parsedExpires === false || (time() + $minFresh) > $parsedExpires) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     /**
@@ -58,7 +61,7 @@ class CacheValidator implements CacheValidatorInterface {
      * @return boolean
      */
     public function isRequestCacheable(Request $request) {
-        if ($this->isHTTPMethodCacheable($request->getMethod())) {
+        if (!$this->isHTTPMethodCacheable($request->getMethod())) {
             return false;
         }
 
@@ -105,7 +108,7 @@ class CacheValidator implements CacheValidatorInterface {
      * @param string $statusCode
      * @return boolean
      */
-    private function isStatusCodeCacheable($statusCode) {
+    public function isStatusCodeCacheable($statusCode) {
         if (!in_array($statusCode, self::$CACHEABLE_STATUS_CODES)) {
             return false;
         }
@@ -115,12 +118,13 @@ class CacheValidator implements CacheValidatorInterface {
     /**
      * 
      * @param string $HTTPMethod
-     * @return booleanF
+     * @return boolean
      */
-    private function isHTTPMethodCacheable($HTTPMethod) {
+    public function isHTTPMethodCacheable($HTTPMethod) {
         if (!in_array($HTTPMethod, self::$CACHEABLE_HTTP_METHODS)) {
             return false;
         }
+        return true;
     }
 
     /**
@@ -128,7 +132,7 @@ class CacheValidator implements CacheValidatorInterface {
      * @param string $cacheControl
      * @return boolean
      */
-    private function isCacheControlCacheable($cacheControl) {
+    public function isCacheControlCacheable($cacheControl) {
         // parse CacheControl
         $pCC = $this->parseCacheControl($cacheControl);
 
