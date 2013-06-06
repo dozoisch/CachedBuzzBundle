@@ -8,23 +8,25 @@ Installation
 
 1.  Add this to the `composer.json`:
 
-        {
-            "require": {
-                "dozoisch/cachedbuzz": "dev-master"
-            }
+    ```json
+    {
+        "require": {
+            "dozoisch/cachedbuzz": "dev-master"
         }
-
+    }
+    ```
 
 2.  Enable the bundle in `app/AppKernel.php`:
 
-        public function registerBundles()
-        {
-            $bundles = array(
-                // ...
-                new Dozoisch\CachedBuzzBundle\DozoischCachedBuzzBundle(),
-            );
-        }
-
+    ```php
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Dozoisch\CachedBuzzBundle\DozoischCachedBuzzBundle(),
+        );
+    }
+    ```
 
 Configuration
 ------------
@@ -34,15 +36,17 @@ Configuration
 
 Here is the full configuration *(in yaml)* possible, with the defaults value :
 
-    dozoisch_cached_buzz:
-        http_client:
-            timeout: 10
-            verify_peer: true
-            max_redirects: 5
-            ignore_errors: true
-        cache: null #takes a string
-        validator: null #takes a string
-        
+```yaml
+dozoisch_cached_buzz:
+    http_client:
+        timeout: 10
+        verify_peer: true
+        max_redirects: 5
+        ignore_errors: true
+    cache: null #takes a string
+    validator: null #takes a string
+```
+
 In the `http_client` is used to configure the buzz client. The `cache` setting takes a string that should be a class or a service. Same thing for the `validator`.
 
 The `cache` has to implement the class `Dozoisch\CachedBuzzBundle\Cache\CacheInterface`.  
