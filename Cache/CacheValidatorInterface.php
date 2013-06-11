@@ -15,9 +15,10 @@ use Buzz\Message\Response;
 use Buzz\Message\Request;
 
 /**
- * Description of CacheValidatorInterface
  *
  * @author hugo
+ * 
+ * The class implementing this interface provides a way to check if a request and its reponse is cacheable or not.
  */
 interface CacheValidatorInterface {
 

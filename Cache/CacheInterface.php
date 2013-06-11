@@ -12,8 +12,14 @@
 namespace Dozoisch\CachedBuzzBundle\Cache;
 
 /**
- *
+ * 
  * @author dozoisch
+ * 
+ * The class implementing this interface provides a way to save and retrieve data. 
+ * The persistence time of the data depends of the implementation. 
+ * 
+ * For example, an implementation using files would be really persistent and an implementation using
+ * APC would depend on the web server.
  */
 interface CacheInterface {
 

@@ -15,6 +15,13 @@ use Buzz\Browser as BuzzBrowser;
 use Buzz\Client\ClientInterface;
 use Buzz\Util\Url;
 
+/**
+ * 
+ * @author dozoisch
+ * 
+ * This class is mainly like the Buzz\Browser class but adds a functionnality to the call function 
+ * in order to cache requests.
+ */
 class Browser extends BuzzBrowser {
 
     /**

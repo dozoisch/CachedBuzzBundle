@@ -35,7 +35,7 @@ class CacheValidatorTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function setUpCacheableRequest() {
-        //Putting on cacheable  info first
+        // Putting on cacheable  info first
         $this->request = new Request();
         $this->request->setMethod('GET');
         $this->request->fromUrl('https://www.googleapis.com/oauth2/v1/certs');
@@ -73,9 +73,21 @@ class CacheValidatorTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue($this->validator->isExpired($this->response, 0), 'That should be expired, 0');
     }
 
+    public function testIsHTTPMethodCacheable() {
+        $cacheables = array('GET', 'HEAD');
+        $notCacheables = array('POST', 'PUT', 'DELETE', 'TRACE');
+        foreach ($cacheables as $method) {
+            $this->assertTrue($this->validator->isHTTPMethodCacheable($method), "The method $method should be cacheable");
+        }
+        foreach ($notCacheables as $method) {
+            $this->assertFalse($this->validator->isHTTPMethodCacheable($method), "The method $method should not be cacheable");
+        }
+    }
+
     public function testIsStatusCodeCacheable() {
         $cacheables = array('200', '203', '204', '205', '300', '301', '410');
-        $notCacheables = array('201', '202', '206',
+        $notCacheables = array(
+            '201', '202', '206',
             '302', '303', '304', '305', '307',
             '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', '411', '412', '413', '414', '415', '416', '417',
             '500', '501', '502', '503', '504', '505'
@@ -88,15 +100,8 @@ class CacheValidatorTest extends \PHPUnit_Framework_TestCase {
         }
     }
 
-    public function testIsHTTPMethodCacheable() {
-        $cacheables = array('GET', 'HEAD');
-        $notCacheables = array('POST', 'PUT', 'DELETE', 'TRACE');
-        foreach ($cacheables as $method) {
-            $this->assertTrue($this->validator->isHTTPMethodCacheable($method), "The method $method should be cacheable");
-        }
-        foreach ($notCacheables as $method) {
-            $this->assertFalse($this->validator->isHTTPMethodCacheable($method), "The method $method should not be cacheable");
-        }
+    public function testIsCacheControlCacheable() {
+        //@todo 
     }
 
     /**
@@ -136,7 +141,7 @@ class CacheValidatorTest extends \PHPUnit_Framework_TestCase {
      * @depends testIsResponseCacheable
      */
     public function testIsCacheable() {
-        
+        //@todo
     }
 
 }
