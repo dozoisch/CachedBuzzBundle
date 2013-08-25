@@ -82,6 +82,8 @@ services:
     arguments: ['@buzz.cacher', '@buzz.client.curl']
 ```
 
+You can now call the browser just as you would any other service
+
 [buzzlnk]:https://github.com/kriswallsmith/Buzz
 [apclnk]:http://www.php.net/manual/en/book.apc.php
 [mitlnk]:http://en.wikipedia.org/wiki/MIT_License
