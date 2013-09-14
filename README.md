@@ -52,6 +52,37 @@ In the `http_client` is used to configure the buzz client. The `cache` setting t
 The `cache` has to implement the class `Dozoisch\CachedBuzzBundle\Cache\CacheInterface`.  
 The `validator` has to implement the class `Dozoisch\CachedBuzzBundle\Cache\CacheValidatorInterface`.
 
+Running as a Service
+--------------------
+
+To run the cached Buzz bundle as a service, insert this into your services.yml file:
+
+```yaml
+services:
+  buzz.client.curl:
+    class:  Buzz\Client\Curl
+    public: false
+    calls:
+      - [setVerifyPeer, [false]]
+      - [setTimeout, [100]]
+  
+  buzz.cacheinterface:
+    class: Dozoisch\CachedBuzzBundle\Cache\APCCache
+  
+  buzz.cachevalidator:
+    class: Dozoisch\CachedBuzzBundle\Cache\CacheValidator
+
+  buzz.cacher:
+    class: Dozoisch\CachedBuzzBundle\Cacher
+    arguments: ['@buzz.cacheinterface', '@buzz.cachevalidator']
+
+  # Buzz browser
+  buzz.browser:
+    class:     Dozoisch\CachedBuzzBundle\Browser
+    arguments: ['@buzz.cacher', '@buzz.client.curl']
+```
+
+You can now call the browser just as you would any other service
 
 [buzzlnk]:https://github.com/kriswallsmith/Buzz
 [apclnk]:http://www.php.net/manual/en/book.apc.php
