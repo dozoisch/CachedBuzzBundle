@@ -17,7 +17,7 @@ use Buzz\Message\Request;
 /**
  * This valids if a buzz response is cacheable or not.
  *
- * @author hugo
+ * @author dozoisch
  */
 class CacheValidator implements CacheValidatorInterface {
 

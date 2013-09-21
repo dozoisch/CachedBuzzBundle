@@ -18,7 +18,7 @@ use Buzz\Message\Response;
 /**
  * CacheValidatorTest
  *
- * @author hugo
+ * @author dozoisch
  */
 class CacheValidatorTest extends \PHPUnit_Framework_TestCase {
 

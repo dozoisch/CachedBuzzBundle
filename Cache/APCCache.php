@@ -14,7 +14,7 @@ namespace Dozoisch\CachedBuzzBundle\Cache;
 /**
  * A cache implementation using APC.
  *
- * @author hugo
+ * @author dozoisch
  */
 class APCCache implements CacheInterface {
 

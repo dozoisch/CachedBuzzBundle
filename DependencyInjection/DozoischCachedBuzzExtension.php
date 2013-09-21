@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Loader;
  */
 class DozoischCachedBuzzExtension extends Extension {
 
-    const APCCacheClass = 'Dozoisch\CachedBuzzBundle\Cache\APCCache';
+    const APC_CACHE_CLASS = 'Dozoisch\CachedBuzzBundle\Cache\APCCache';
 
     /**
      * {@inheritDoc}
@@ -50,7 +50,7 @@ class DozoischCachedBuzzExtension extends Extension {
             $cache->setClass($config['cache']);
             $container->setDefinition('dozoisch.cached_buzz.cache', $cache);
         }
-        if ($cache->getClass() === self::APCCacheClass && !(extension_loaded('apc') && ini_get('apc.enabled'))) {
+        if ($cache->getClass() === self::APC_CACHE_CLASS && !(extension_loaded('apc') && ini_get('apc.enabled'))) {
             throw new \Exception("APC is not Installed on the server. You can install it by doing apt-get install php-apc");
         }
 

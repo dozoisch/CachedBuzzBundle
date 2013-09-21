@@ -16,7 +16,7 @@ use Buzz\Message\Request;
 
 /**
  *
- * @author hugo
+ * @author dozoisch
  * 
  * The class implementing this interface provides a way to check if a request and its reponse is cacheable or not.
  */

@@ -16,7 +16,7 @@ use Dozoisch\CachedBuzzBundle\Cache\APCCache;
 /**
  * Test class for the APCCache class
  *
- * @author hugo
+ * @author dozoisch
  */
 class APCCacheTest extends \PHPUnit_Framework_TestCase {
 

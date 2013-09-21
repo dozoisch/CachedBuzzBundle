@@ -17,7 +17,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Configuartion for the CachedBuzz Bundle
  *
- * @author Hugo Dozois <hugo.dozois@gmail.com>
+ * @author dozoisch
  */
 class Configuration implements ConfigurationInterface {
 

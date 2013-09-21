@@ -58,31 +58,79 @@ Running as a Service
 To run the cached Buzz bundle as a service, insert this into your services.yml file:
 
 ```yaml
+parameters:
+  dozoisch.bundle.name: Dozoisch\CachedBuzzBundle
+
 services:
-  buzz.client.curl:
-    class:  Buzz\Client\Curl
+  # The actual service
+  dozoisch.buzz.browser:
+    class: '%dozoisch.bundle.name%\Browser'
+    arguments: ['@dozoisch.buzz.cacher', '@dozoisch.buzz.client.curl']
+    
+  # Parametring.
+  dozoisch.buzz.client.curl:
+    class:  'Buzz\Client\Curl'
     public: false
     calls:
-      - [setVerifyPeer, [false]]
-      - [setTimeout, [100]]
-  
-  buzz.cacheinterface:
-    class: Dozoisch\CachedBuzzBundle\Cache\APCCache
-  
-  buzz.cachevalidator:
-    class: Dozoisch\CachedBuzzBundle\Cache\CacheValidator
+      - [setVerifyPeer, [false]] # this is optional
+      - [setTimeout, [100]] # this is optional
 
-  buzz.cacher:
-    class: Dozoisch\CachedBuzzBundle\Cacher
-    arguments: ['@buzz.cacheinterface', '@buzz.cachevalidator']
+  dozoisch.buzz.cacheinterface:
+    class: '%dozoisch.bundle.name%\Cache\APCCache'
 
-  # Buzz browser
-  buzz.browser:
-    class:     Dozoisch\CachedBuzzBundle\Browser
-    arguments: ['@buzz.cacher', '@buzz.client.curl']
+  dozoisch.buzz.cachevalidator:
+    class: '%dozoisch.bundle.name%\Cache\CacheValidator'
+
+  dozoisch.buzz.cacher:
+    class: '%dozoisch.bundle.name%\Cacher'
+    arguments: ['@dozoisch.buzz.cacheinterface', '@dozoisch.buzz.cachevalidator']
+
 ```
 
-You can now call the browser just as you would any other service
+*When using it like that it overrides some of the normal bundles setting and thus, the cacher and client parameters for the browser are no longer optional.*
+
+How to use it
+--------------------
+
+You can now call the browser just as you would any other service.
+
+###Container aware class
+
+If you wish to call it from a container aware class, a controller for example, just do `$this->get('dozoisch.buzz.browswer');`.
+
+###Non-container aware class
+
+To call it from a service which is not container aware, first add this to your services.yml
+
+```yaml
+
+services:
+  my.super.service:
+    class: xclass.class
+    arguments: ['@dozoisch.buzz.browser']
+```
+
+And make sure to have the appropriate constructor in your class :
+
+```php
+/** @var Buzz\Browser */
+protected $browser;
+
+public function __construct(\Buzz\Browser $browser) {
+    $this->browser = $browser;
+}
+
+```
+
+###Actually using it
+
+After retrieving the browser, you can use it as you would with the normal buzz browser. This bundles is meant to be used seamlessly over the normal buzz instance.
+
+```php
+$response = $this->browser->get("http://example.com");
+$content = $response->getContent();
+```
+The available functions are post, head, patch, put, delete.
 
 [buzzlnk]:https://github.com/kriswallsmith/Buzz
 [apclnk]:http://www.php.net/manual/en/book.apc.php

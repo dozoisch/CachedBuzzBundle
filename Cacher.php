@@ -20,7 +20,7 @@ use Dozoisch\CachedBuzzBundle\Cache\CacheValidatorInterface;
  * Cacher is the class that validates if an entry is cached or can be cached, and then caches it.
  * The two classes it uses can be changed as long as they implement the correct interfaces
  *
- * @author hugo
+ * @author dozoisch
  */
 class Cacher {
 
