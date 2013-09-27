@@ -55,7 +55,7 @@ The `validator` has to implement the class `Dozoisch\CachedBuzzBundle\Cache\Cach
 Running as a Service
 --------------------
 
-To run the cached Buzz bundle as a service, insert this into your services.yml file:
+To run the Cached Buzz Bundle as a service, insert this into your services.yml file:
 
 ```yaml
 parameters:
@@ -92,11 +92,11 @@ services:
 How to use it
 --------------------
 
-You can now call the browser just as you would any other service.
+You can now call the browser just as you would with any other service.
 
 ###Container aware class
 
-If you wish to call it from a container aware class, a controller for example, just do `$this->get('dozoisch.buzz.browswer');`.
+If you wish to call it from a container aware class, a controller for example, just do `$this->get('dozoisch.buzz.browser');`.
 
 ###Non-container aware class
 
